@@ -34,6 +34,8 @@
             // 1. O PORTEIRO (Verifica se DEVE PARAR)
             // Se passou do limite, somos expulsos da festa.
             if (c1 > limite) {
+                //Verificação a mais que o while normal faz.
+                document.write("Passo: " + c1 + " Festa já acabou, mas você vai na porta perguntar se pode entrar. Ele nega, festa acabou, e você vai embora!<br>")
                 break; // Sai do loop
             }
 
@@ -54,7 +56,7 @@
         // EXEMPLO 2: DO...WHILE (O Otimista)
         // =================================================================
         document.write("<div class='box'>");
-        document.write("<h3>2. O Do...While (Checa na Saída)</h3>");
+        document.write("<h3>2. O Do...While (Verifica na Saída)</h3>");
         document.write("<p class='obs'>Ele faz primeiro, pergunta depois. Economiza a 'viagem perdida' de volta ao topo.</p>");
 
         let c2 = 1; // Resetando contador
