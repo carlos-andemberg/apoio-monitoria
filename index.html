@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumão: A Lógica dos Loops</title>
+    <style>
+        body { font-family: 'Courier New', monospace; background-color: #f4f4f9; padding: 20px; }
+        h3 { background-color: #333; color: #fff; padding: 10px; border-radius: 5px; }
+        .box { background: white; padding: 15px; border: 1px solid #ddd; margin-bottom: 20px; border-radius: 8px; }
+        .erro { color: red; font-weight: bold; }
+        .obs { color: blue; font-style: italic; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <h1>🛠️ Desconstruindo o Loop (While vs Do...While vs Bugs)</h1>
+    <p>Abra o código fonte (Ctrl+U) para ver os comentários explicativos!</p>
+    <hr>
+
+    <script>
+        // =================================================================
+        // EXEMPLO 1: SIMULANDO O PROCESSADOR (A Lógica "Assembly")
+        // =================================================================
+        document.write("<div class='box'>");
+        document.write("<h3>1. O 'While' Desconstruído (Entenda o Motor)</h3>");
+        document.write("<p class='obs'>Aqui mostramos o que o computador realmente faz: Pula pra fora (Break) ou Pula pro começo (Continue).</p>");
+
+        let c1 = 1;
+        let limite = 3;
+
+        // WHILE(TRUE) = O motor ligado sem freio
+        while (true) {
+
+            // 1. O PORTEIRO (Verifica se DEVE PARAR)
+            // Se passou do limite, somos expulsos da festa.
+            if (c1 > limite) {
+                break; // Sai do loop
+            }
+
+            // 2. A AÇÃO
+            document.write("Passo: " + c1 + "<br>");
+            c1++; // Incrementa
+
+            // 3. O RETORNO (Verifica se DEVE REPETIR)
+            // Se ainda for válido, pega o atalho de volta pro topo.
+            if (c1 <= limite) {
+                continue; // Volta pro topo
+            }
+        }
+        document.write("</div>");
+
+
+        // =================================================================
+        // EXEMPLO 2: DO...WHILE (O Otimista)
+        // =================================================================
+        document.write("<div class='box'>");
+        document.write("<h3>2. O Do...While (Checa na Saída)</h3>");
+        document.write("<p class='obs'>Ele faz primeiro, pergunta depois. Economiza a 'viagem perdida' de volta ao topo.</p>");
+
+        let c2 = 1; // Resetando contador
+
+        do {
+            document.write("Passo Otimizado: " + c2 + "<br>");
+            c2++;
+            
+            // O teste acontece AQUI EMBAIXO.
+            // Se falhar, ele sai direto. Se passar, ele volta.
+        } while (c2 <= limite);
+        
+        document.write("</div>");
+
+
+        // =================================================================
+        // EXEMPLO 3: O BUG DO LOOP INFINITO (O Pesadelo)
+        // =================================================================
+        document.write("<div class='box' style='border: 2px solid red;'>");
+        document.write("<h3>3. O Bug do Loop Infinito ☠️</h3>");
+        document.write("<p>O que acontece se esquecermos o <strong>contador++</strong>?</p>");
+
+        let c3 = 1;
+        let trava_seguranca = 0; // Salva-vidas para não travar o PC da turma
+
+        while (true) {
+            
+            // --- PROTEÇÃO PARA A AULA ---
+            trava_seguranca++;
+            if (trava_seguranca > 10) {
+                document.write("<br><span class='erro'>🚨 TRAVOU! (Loop interrompido pela segurança)</span><br>");
+                document.write("Perceba que o contador continua sendo: " + c3);
+                break; 
+            }
+            // ----------------------------
+
+            // 1. O PORTEIRO
+            if (c3 > limite) {
+                break; 
+            }
+
+            // 2. AÇÃO
+            document.write("Travado no passo: " + c3 + " | ");
+            
+            // ❌ ESQUECEMOS O INCREMENTO!
+            // c3++; 
+
+            // 3. O RETORNO
+            // Como 1 é sempre menor que 3, ele volta pro topo ETERNAMENTE.
+            if (c3 <= limite) {
+                continue; 
+            }
+        }
+        document.write("</div>");
+
+    </script>
+
+    <footer>
+        <p><em>Material de Apoio - Monitoria de Lógica</em></p>
+    </footer>
+
+</body>
+</html>
